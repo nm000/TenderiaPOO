@@ -1,0 +1,92 @@
+.login-contenido-fondo{
+    background-color: yellow;
+    height:625px;
+}
+
+.login-contenido{
+    /*background-image: url('./logoStore.png');*/
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: 50%;
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-part{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 30px;
+    color: darkmagenta;
+    font-weight: bold;
+    text-transform:inherit;
+    margin: 20px;
+    padding: 30px 30px;
+}
+
+.barra{
+    padding-bottom: 20px;
+    border: 20px;
+    text-align: center;
+    justify-content: center;
+}
+
+.error{
+    font-size: 20px;
+    color: red;
+    background-color: rgb(224,204,204);
+    width: fit-content;
+    height: fit-content;
+    padding: 0 3px ;
+    box-sizing: border-box;
+    /*border-radius: 5px;*/
+    margin-left: 10px;
+}
+
+.boton-contenido{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.boton{
+    width: 90%;
+    height: 50px;
+    border-radius: 20px;
+    border: 1px solid;
+    outline: none;
+    background-color: greenyellow;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.boton:hover{
+    opacity: 0.5;
+}
+
+.label-alerta{
+    font-size: 20px;
+    color: red;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(224,204,204);
+    width: fit-content;
+    height: fit-content;
+    padding: 5px ;
+    box-sizing: border-box;
+    /*border-radius: 5px;*/
+    margin-bottom: 10px;
+}
+
+.inicio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.inicio h1, .inicio label{
+    color: black;
+}
