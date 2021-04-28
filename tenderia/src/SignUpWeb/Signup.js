@@ -7,6 +7,7 @@ import MaterialUiPhoneNumber from 'material-ui-phone-number';
 import firebase from '../utils/firebase';
 import Alert from '@material-ui/lab/Alert';
 import { useHistory } from 'react-router';
+import {AuthContext}  from '../utils/Auth.js';
 const Signup = () => {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
@@ -15,6 +16,7 @@ const Signup = () => {
     const [phone, setPhoneNumber] = useState('');
     const [hasError, setError] = useState(false);
     const [errorMSG, setErrorMSG] = useState('');
+    const curr = React.useContext(AuthContext);
     const styles = {
         height: '100vh',
         display: 'flex',
@@ -52,6 +54,9 @@ const Signup = () => {
             telefono: phone,
             cedula: id
         });
+    }
+    if(!!curr.currentUser){
+        history.push("/user");
     }
     return (
         <div style={styles}>

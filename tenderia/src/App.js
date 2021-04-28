@@ -6,12 +6,14 @@ import './App.css';
 import { Switch, Route, BrowserRouter as Router, withRouter } from 'react-router-dom';
 import {AuthProvider}  from './utils/Auth.js';
 import PrivateRoute from './utils/PrivateRoute.js';
+import Landing from './Landing/Landing.js';
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <Router>
           <Switch>
+            <Route exact path="/" component={withRouter(Landing)}></Route>
             <Route exact path="/login" component={withRouter(Login)}>
             </Route>
             <Route exact path="/sign-up" component={withRouter(Signup)}>

@@ -5,6 +5,7 @@ import { TextField, Paper, Box, Button, InputAdornment } from '@material-ui/core
 import Alert from '@material-ui/lab/Alert';
 import firebase from '../utils/firebase';
 import { Link, useHistory } from 'react-router-dom';
+import {AuthContext}  from '../utils/Auth.js';
 const Login = () => {
     //USER VARIABLE QUE ALMACENA ESTADO
     const [user, setUser] = useState('');
@@ -12,6 +13,7 @@ const Login = () => {
     const [isLogged, setSession] = useState(false);
     const [hasError, setError] = useState(false);
     const [errorMSG, setErrorMSG] = useState('');
+    const curr = React.useContext(AuthContext);
     //USESTATE CONTROLA EL ESTADO DE lAS PRIMERAS VARIABLES
     const styles = {
         height: '100vh',
@@ -31,7 +33,6 @@ const Login = () => {
             firebase.auth().signInWithEmailAndPassword(user, password)
             .then((userCredential) => {
                 // Signed in
-                localStorage.setItem('user', user);
                 setSession(true);
                 history.push("/user");
             })
@@ -44,6 +45,9 @@ const Login = () => {
             setError(true)
             setErrorMSG('Usuario invalido')
         }
+    }
+    if(!!curr.currentUser){
+        history.push("/user");
     }
     return (
         <>
