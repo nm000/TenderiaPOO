@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {AuthContext}  from '../utils/Auth.js';
+import AddStoreDialog from '../AddStoreDialog/AddStoreDialog';
 const useStyles = makeStyles((theme) => ({
   appBar: {
     flexGrow: 1,
@@ -25,6 +26,8 @@ const Usuario = () => {
   const [name, setName] = useState('');
   const [id, setID] = useState('');
   const [phone, setPhoneNumber] = useState('');
+  const [storeName, setStoreName] = useState('');
+  const [storeExist, setStore] = useState(true);
   const logout = () => {
     firebase.auth().signOut().then(() => {
       history.push("/login");
@@ -45,6 +48,17 @@ const Usuario = () => {
     }).catch(function(error) {
       console.error(error);
     });
+    firebase.database().ref('local/'+user.currentUser.uid).get().then(function(snapshot) {
+      if (snapshot.exists()) {
+        console.log(snapshot.val().nombre)
+        setStoreName(snapshot.val().nombre)
+      }
+      else {
+        setStore(false);
+      }
+    }).catch(function(error) {
+      console.error(error);
+    });
   })
   const currentUser = user.currentUser.email;
   return (
@@ -60,11 +74,13 @@ const Usuario = () => {
           <Button color="inherit">{name.split(" ")[0]}</Button>
         </Toolbar>
       </AppBar>
+      {/*storeExist? <p></p> :<AddStoreDialog></AddStoreDialog>*/}
       <h1>Hola, parce!</h1>
       <p>Usuario actual: {currentUser}</p>
       <p>{name}</p>
       <p>Cedula {id}</p>
       <p>Telefono {phone}</p>
+      <p>{storeName}</p>
       <Button onClick={(e) => logout()}>Log out</Button>
     </div>
   )
