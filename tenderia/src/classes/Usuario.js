@@ -8,7 +8,7 @@ class Usuario {
         this.cedula = cedula;
     }
     crearUsuario() {
-        const ret = false;
+        let ret = false;
         firebase.auth().createUserWithEmailAndPassword(this.usuario, this.contraseña)
             .then((userCredential) => {
                 // Signed in
@@ -26,9 +26,9 @@ class Usuario {
                 var errorMessage = error.message;
                 throw errorMessage;
             });
-        return true;
+        return ret;
     }
-    iniciarSesion(usuario, contraseña) {
+    static iniciarSesion(usuario, contraseña) {
         console.log(usuario)
         const ret = false;
         firebase.auth().signInWithEmailAndPassword(usuario, contraseña)

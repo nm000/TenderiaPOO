@@ -8,16 +8,30 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Autocomplete } from '@material-ui/lab';
 import { Select } from '@material-ui/core';
-
+import Local from '../classes/Local';
+import Ciudades from '../classes/Ciudades';
+import { AuthContext } from '../utils/Auth.js';
 export default function AddStoreDialog() {
+    let tienda = null;
+    const user = React.useContext(AuthContext);
     const [open, setOpen] = React.useState(true);
-
+    const [localName, setLocalName] = React.useState('');
+    const [direccion, setDireccion] = React.useState('');
+    const [ciudad, setCiudad] = React.useState('');
     const handleClickOpen = () => {
         setOpen(true);
     };
 
-    const handleClose = () => {
-        setOpen(false);
+    const addTienda = () => {
+        if (direccion != "" && localName != "") {
+            tienda = new Local(localName, direccion, ciudad);
+            if (tienda.addLocal(user.currentUser.uid)) {
+                setOpen(false);
+                window.location.reload()
+            };
+        } else {
+            alert("Verifique los datos de su tienda porfavor.");
+        }
     };
 
     return (
@@ -33,6 +47,7 @@ export default function AddStoreDialog() {
                         label="Nombre de tu tienda"
                         variant="outlined"
                         fullWidth
+                        onChange={(e) => setLocalName(e.target.value)}
                     />
                     <TextField
                         margin="dense"
@@ -40,6 +55,7 @@ export default function AddStoreDialog() {
                         variant="outlined"
                         label="Direccion"
                         fullWidth
+                        onChange={(e) => setDireccion(e.target.value)}
                     />
                     <Select
                         native
@@ -47,14 +63,17 @@ export default function AddStoreDialog() {
                         value=""
                         variant="outlined"
                         fullWidth
+                        onChange={(e) => setCiudad(e.target.value)}
                     >
-                    <option key="" value="">
-                        Seleccione una ciudad
-                    </option>
+                        {
+                        Ciudades.map(ciudad =>
+                            <option key={ciudad} value={ciudad}>{ciudad}</option>
+                        )
+                    }
                     </Select>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} disabled color="primary">
+                    <Button onClick={addTienda} color="primary">
                         Añadir Tienda
                     </Button>
                 </DialogActions>

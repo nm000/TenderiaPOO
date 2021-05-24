@@ -37,9 +37,8 @@ const Login = () => {
         return re.test(email);
     }
     const submitHandler = () => {
-        if (validateEmail(user)) {
-            const u = new Usuario(user, password, null, null, null);
-            if (u.iniciarSesion(user, password)) {
+        if (validateEmail(user)) {//const u = new Usuario(user, password, null, null, null);
+            if (Usuario.iniciarSesion(user, password)) {
                 setSession(true);
                 history.push("/user");
             }
