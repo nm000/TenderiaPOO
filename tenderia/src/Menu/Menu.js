@@ -42,7 +42,8 @@ const Menu = (props) => {
                         <br></br>
                         {props.address}
                     </Box>
-                    {['Facturación de Compra', 'Manejo de Inventario', 'Proveedores', 'Mis Datos'].map((text, index) => (
+                    <Divider></Divider>
+                    {['Inicio','Facturación de Compra', 'Manejo de Inventario', 'Proveedores', 'Mis Datos'].map((text, index) => (
                         <>
                             <ListItem button key={text}>
                                 <ListItemText>{text}</ListItemText>
