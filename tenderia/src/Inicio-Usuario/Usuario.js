@@ -86,6 +86,7 @@ const Usuario = () => {
     });
   })
   const currentUser = user.currentUser.email;
+
   return (
     <div>
       <AppBar className={classes.appBar}>
