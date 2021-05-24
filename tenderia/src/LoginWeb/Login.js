@@ -67,7 +67,7 @@ const Login = () => {
                         <Box style={boxStyles} component={Paper} elevation={10} display="flex" justifyContent="center" alignItems="center">
                             <Box p={4}>
                                 <Box display="flex">
-                                    <h1 style={{ margin: 'inherit' }}>Iniciar sesión</h1>
+                                    <h1 style={{ marginLeft: '85px'}}>Iniciar sesión</h1>
                                 </Box>
                                 {hasError ?
                                     <Alert variant="filled" severity="error">
@@ -121,7 +121,7 @@ const Login = () => {
                                         <hr></hr>
                                     </Grid>
                                     <Grid item xs={4}>
-                                        <p>sin cuenta?</p>
+                                        <p>¿Sin cuenta?</p>
                                     </Grid>
                                     <Grid item xs={4}>
                                         <br></br>
@@ -133,7 +133,7 @@ const Login = () => {
                                         variant="contained"
                                         color="secondary"
                                         style={{ width: '100%' }}>
-                                        Registrate
+                                        Regístrate
                 </Button>
                                 </Link>
                             </Box>

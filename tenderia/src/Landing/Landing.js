@@ -9,7 +9,7 @@ const Landing = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundImage: `url(${landing})`,
+        backgroundImage: `url(${Landing})`,
         backgroundRepeat: 'noRepeat',
         backgroundSize: 'cover'
     }
