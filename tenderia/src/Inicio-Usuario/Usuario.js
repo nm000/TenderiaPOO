@@ -6,7 +6,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Drawer } from '@material-ui/core';
 import clsx from "clsx";
-
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { AuthContext } from '../utils/Auth.js';
 import AddStoreDialog from '../AddStoreDialog/AddStoreDialog';
 import Menu from '../Menu/Menu';
+import Inicio from '../Modulos/Inicio';
 const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(6,3),
+    padding: theme.spacing(10,3),
     transition: theme.transitions.create('padding', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   contentShift: {
     flexGrow: 1,
-    padding: theme.spacing(6,3),
+    padding: theme.spacing(10,3),
     paddingLeft: drawerWidth
   },
   title: {
@@ -105,13 +105,8 @@ const Usuario = () => {
       <div class={clsx(classes.content, {
           [classes.contentShift]: menu
         })}>
-        <h1>Hola, parce!</h1>
-        <p>Usuario actual: {currentUser}</p>
-        <p>{name}</p>
-        <p>Cedula {id}</p>
-        <p>Telefono {phone}</p>
-        <p>{storeName}</p>
-      </div>
+          <Inicio nombre={name.split(" ")[0]}></Inicio>
+        </div>
     </div>
   )
 }
