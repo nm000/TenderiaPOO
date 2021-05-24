@@ -103,8 +103,8 @@ const Login = () => {
                                 style={{ width: '100%' }}>
                                 Ingresar
                                 </Button>
-                            <p style={{ marginTop: '16px', fontWeight: '600' }}>No tienes cuenta?</p>
-                            <Link to="sign-up">
+                            <p style={{ marginTop: '16px', fontWeight: '600' }}>¿No tienes cuenta?</p>
+                            <Link to="sign-up" className='container'>
                                 <Button
                                     variant="contained"
                                     color="secondary"

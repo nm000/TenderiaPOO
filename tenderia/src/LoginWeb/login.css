@@ -1,10 +1,14 @@
-.login-contenido-fondo{
+.container{
+    text-decoration: none;
+}
+
+/*.login-contenido-fondo{
     background-color: yellow;
     height:625px;
 }
 
 .login-contenido{
-    /*background-image: url('./logoStore.png');*/
+    background-image: url('./logoStore.png');
     background-repeat: no-repeat;
     background-position: top;
     background-size: 50%;
@@ -40,7 +44,7 @@
     height: fit-content;
     padding: 0 3px ;
     box-sizing: border-box;
-    /*border-radius: 5px;*/
+    /*border-radius: 5px;
     margin-left: 10px;
 }
 
@@ -76,7 +80,7 @@
     height: fit-content;
     padding: 5px ;
     box-sizing: border-box;
-    /*border-radius: 5px;*/
+    /*border-radius: 5px;*
     margin-bottom: 10px;
 }
 
@@ -89,4 +93,5 @@
 }
 .inicio h1, .inicio label{
     color: black;
-}
+}*/
+

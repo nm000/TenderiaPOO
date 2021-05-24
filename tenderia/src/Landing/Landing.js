@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import './Landing.css';
 
 const Landing = () => {
     const styles = {
@@ -14,10 +15,10 @@ const Landing = () => {
             <div>
                 <h1>StoreManager</h1>
                 <p>La mejor manera de manejar tu tienda de forma digital</p>
-                <Link to="/login"><Button variant="contained">Ingresar</Button></Link>
+                <Link to="/login" className='container'><Button jvariant="contained" >Ingresar</Button></Link>
                 <br></br>
                 <br></br>
-                <Link to="/sign-up"><Button variant="contained" color="secondary">Registrarse</Button></Link>
+                <Link to="/sign-up" className='container'><Button variant="contained" color="secondary">Registrarse</Button></Link>
             </div>
         </div>
     )

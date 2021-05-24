@@ -8,7 +8,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import {AuthContext}  from '../utils/Auth.js';
+import { AuthContext } from '../utils/Auth.js';
+import './BarraUser';
+import { BarChartRounded } from '@material-ui/icons';
 const useStyles = makeStyles((theme) => ({
   appBar: {
     flexGrow: 1,
@@ -32,8 +34,8 @@ const Usuario = () => {
       alert("Houston, we have a problem");
     });
   }
-  useEffect(()=> {
-    firebase.database().ref('usuario/'+user.currentUser.uid).get().then(function(snapshot) {
+  useEffect(() => {
+    firebase.database().ref('usuario/' + user.currentUser.uid).get().then(function (snapshot) {
       if (snapshot.exists()) {
         setName(snapshot.val().nombre)
         setID(snapshot.val().cedula)
@@ -42,17 +44,28 @@ const Usuario = () => {
       else {
         console.log("No data available");
       }
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.error(error);
     });
   })
   const currentUser = user.currentUser.email;
+
   return (
     <div className={classes.appBar}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+          <IconButton edge="start" className={classes.menuButton} color="inherit" 
+          aria-label="menu" href='http://5500/src/Inventario/PagInventario.html'>
+            <MenuIcon>
+              <nav className={classes.appBar}>
+                <li>
+                  <a href="">EDITAR PERFIL</a>
+                </li>
+                <li>
+                  <a href="">INVENTARIO</a>
+                </li>
+              </nav>
+            </MenuIcon>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             StoreManager
