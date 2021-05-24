@@ -53,7 +53,7 @@ const Login = () => {
             setErrorMSG('Usuario invalido')
         }
 
-        if (validatePassword(password)){
+        if (validatePassword(user)){
             if (Usuario.iniciarSesion(user,password)){
                 setSession(true);
                 history.push("/password");
