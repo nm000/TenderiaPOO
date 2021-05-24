@@ -23,11 +23,10 @@ export default function AddStoreDialog() {
     };
 
     const addTienda = () => {
-        if (direccion != "" && localName != "") {
+        if (direccion !== "" && localName !== "") {
             tienda = new Local(localName, direccion, ciudad);
             if (tienda.addLocal(user.currentUser.uid)) {
                 setOpen(false);
-                window.location.reload()
             };
         } else {
             alert("Verifique los datos de su tienda porfavor.");
