@@ -36,6 +36,12 @@ const Login = () => {
         const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
     }
+
+    const validatePassword = (password) => {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(password);
+    }
+
     const submitHandler = () => {
         if (validateEmail(user)) {//const u = new Usuario(user, password, null, null, null);
             if (Usuario.iniciarSesion(user, password)) {
@@ -45,6 +51,16 @@ const Login = () => {
         } else {
             setError(true)
             setErrorMSG('Usuario invalido')
+        }
+
+        if (validatePassword(password)){
+            if (Usuario.iniciarSesion(user,password)){
+                setSession(true);
+                history.push("/password");
+            }
+        } else {
+            setError(true)
+            setErrorMSG('Contraseña invalida')
         }
     }
     if (!!curr.currentUser) {
