@@ -8,7 +8,10 @@ const Landing = () => {
         height: '100vh',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundImage: `url(${landing})`,
+        backgroundRepeat: 'noRepeat',
+        backgroundSize: 'cover'
     }
     return (
         <div style={styles}>
@@ -20,6 +23,7 @@ const Landing = () => {
                 <br></br>
                 <Link to="/sign-up" className='container'><Button variant="contained" color="secondary">Registrarse</Button></Link>
             </div>
+
         </div>
     )
 }

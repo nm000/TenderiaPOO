@@ -1,27 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import bg from '../res/bg.jpg';
 import { Mail, Lock } from '@material-ui/icons';
-import { TextField, Paper, Box, Button, InputAdornment } from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import { TextField, Paper, Box, Button, InputAdornment, Grid } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import firebase from '../utils/firebase';
 import { Link, useHistory } from 'react-router-dom';
-import {AuthContext}  from '../utils/Auth.js';
+import { AuthContext } from '../utils/Auth.js';
+import Usuario from '../classes/Usuario';
 const Login = () => {
-    //USER VARIABLE QUE ALMACENA ESTADO
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [isLogged, setSession] = useState(false);
     const [hasError, setError] = useState(false);
     const [errorMSG, setErrorMSG] = useState('');
     const curr = React.useContext(AuthContext);
-    //USESTATE CONTROLA EL ESTADO DE lAS PRIMERAS VARIABLES
-    const styles = {
+    const body = {
+        height: '100vh'
+    }
+    const boxStyles = {
         height: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        textAlign: 'center'
+    }
+    const sidebar = {
         backgroundImage: `url(${bg})`,
-        backgroundSize: 'cover'
+        textAlign: 'left'
+    }
+    const sidebarContainer = {
+        height: '100vh',
+        textAlign: 'left',
+        color: 'white'
     }
     let history = useHistory();
     const validateEmail = (email) => {
@@ -29,92 +37,110 @@ const Login = () => {
         return re.test(email);
     }
     const submitHandler = () => {
-        if(validateEmail(user)){
-            firebase.auth().signInWithEmailAndPassword(user, password)
-            .then((userCredential) => {
-                // Signed in
+        if (validateEmail(user)) {
+            const u = new Usuario(user, password, null, null, null);
+            if (u.iniciarSesion(user, password)) {
                 setSession(true);
                 history.push("/user");
-            })
-            .catch((error) => {
-                var errorMessage = error.message;
-                setError(true)
-                setErrorMSG(errorMessage)
-            });
+            }
         } else {
             setError(true)
             setErrorMSG('Usuario invalido')
         }
     }
-    if(!!curr.currentUser){
+    if (!!curr.currentUser) {
         history.push("/user");
     }
     return (
         <>
-            <div style={styles}>
-                <Box p={2} mx="auto">
-                    <Paper>
-                        <Box p={2} style={{ textAlign: 'center' }}>
-                            <h1 style={{ fontWeight: '600' }}>StoreManager</h1>
-                            <p>¡Hola, Parcero!</p>
-                            {hasError ?
-                                <Alert variant="filled" severity="error">
-                                   {errorMSG}
-                                    </Alert>
-                                :
-                                <></>}
-                            <TextField
-                                label="Correo"
-                                name="usuario"
-                                variant="outlined"
-                                value={user}
-                                style={{ width: '100%', marginTop: '10px', marginBottom: '10px' }}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <Mail />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                onChange={(e) => setUser(e.target.value)}
-                            ></TextField>
-                            <TextField
-                                label="Contraseña"
-                                type="password"
-                                variant="outlined"
-                                name="contraseña"
-                                value={password}
-                                style={{ width: '100%', marginTop: '10px', marginBottom: '10px' }}
-                                InputProps={{
-                                    startAdornment: (
-                                        <InputAdornment position="start">
-                                            <Lock />
-                                        </InputAdornment>
-                                    ),
-                                }}
-                                onChange={(e) => setPassword(e.target.value)}
-                            >
-                            </TextField>
-                            <Button
-                                onClick={(e) => submitHandler()}
-                                variant="contained"
-                                color="primary"
-                                m={2}
-                                style={{ width: '100%' }}>
-                                Ingresar
-                                </Button>
-                            <p style={{ marginTop: '16px', fontWeight: '600' }}>¿No tienes cuenta?</p>
-                            <Link to="sign-up" className='container'>
-                                <Button
-                                    variant="contained"
-                                    color="secondary"
-                                    style={{ width: '100%' }}>
-                                    Registrate
-                                    </Button>
-                            </Link>
+            <div>
+                <Grid container style={body}>
+                    <Grid item sm={8} style={sidebar}>
+                        <Box style={sidebarContainer} display="flex" justifyContent="center" alignItems="center">
+                            <Box p={4}>
+                                <h1 style={{ fontWeight: '600', margin: 0, fontSize: '72pt' }}>StoreManager</h1>
+                                <h2 style={{ fontWeight: '600', margin: 0 }}>¡Hola parcero, Bienvenido a su casa!</h2>
+                            </Box>
                         </Box>
-                    </Paper>
-                </Box>
+                    </Grid>
+                    <Grid item sm={4}>
+                        <Box style={boxStyles} component={Paper} elevation={10} display="flex" justifyContent="center" alignItems="center">
+                            <Box p={4}>
+                                <Box display="flex">
+                                    <h1 style={{ margin: 'inherit' }}>Iniciar sesión</h1>
+                                </Box>
+                                {hasError ?
+                                    <Alert variant="filled" severity="error">
+                                        {errorMSG}
+                                    </Alert>
+                                    :
+                                    <></>}
+                                <TextField
+                                    label="Correo"
+                                    name="usuario"
+                                    variant="outlined"
+                                    value={user}
+                                    style={{ width: '100%', marginTop: '10px', marginBottom: '10px' }}
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <Mail />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                    onChange={(e) => setUser(e.target.value)}
+                                ></TextField>
+                                <TextField
+                                    label="Contraseña"
+                                    type="password"
+                                    variant="outlined"
+                                    name="contraseña"
+                                    value={password}
+                                    style={{ width: '100%', marginTop: '10px', marginBottom: '10px' }}
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <Lock />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                >
+                                </TextField>
+                                <Button
+                                    onClick={(e) => submitHandler()}
+                                    variant="contained"
+                                    color="primary"
+                                    m={2}
+                                    style={{ width: '100%' }}>
+                                    Ingresar
+                </Button>
+                                <Grid container>
+                                    <Grid item xs={4}>
+                                        <br></br>
+                                        <hr></hr>
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                        <p>sin cuenta?</p>
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                        <br></br>
+                                        <hr></hr>
+                                    </Grid>
+                                </Grid>
+                                <Link to="sign-up" style={{ textDecoration: 'none' }}>
+                                    <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        style={{ width: '100%' }}>
+                                        Registrate
+                </Button>
+                                </Link>
+                            </Box>
+                        </Box>
+                    </Grid>
+
+                </Grid>
             </div>
         </>
     )
