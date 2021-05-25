@@ -5,15 +5,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Drawer } from '@material-ui/core';
-import clsx from "clsx";
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { AuthContext } from '../utils/Auth.js';
 import AddStoreDialog from '../AddStoreDialog/AddStoreDialog';
+import { List, ListItem, ListItemText, Divider, Box } from '@material-ui/core';
+import { Switch, Route, BrowserRouter as Router, withRouter } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import Inicio from '../Modulos/Inicio';
+import Factura from '../Modulos/Factura';
 const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,25 +23,22 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     zIndex: 2000 + 1,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(10,3),
-    transition: theme.transitions.create('padding', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  contentShift: {
-    flexGrow: 1,
-    padding: theme.spacing(10,3),
-    paddingLeft: drawerWidth
-  },
+  }, // Drawer
   title: {
     flexGrow: 1,
     textAlign: 'left'
   },
-  
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  drawerContainer: {
+    overflow: 'auto',
+    padding: theme.spacing(6, 0)
+  },
 }));
 const Usuario = () => {
   let history = useHistory();
@@ -52,13 +51,6 @@ const Usuario = () => {
   const [storeAddress, setStoreAddress] = useState('');
   const [storeExist, setStore] = useState(true);
   const [menu, setMenu] = useState(true);
-  const logout = () => {
-    firebase.auth().signOut().then(() => {
-      history.push("/login");
-    }).catch((error) => {
-      alert("Houston, we have a problem");
-    });
-  }
   useEffect(() => {
     firebase.database().ref('usuario/' + user.currentUser.uid).get().then(function (snapshot) {
       if (snapshot.exists()) {
@@ -86,7 +78,6 @@ const Usuario = () => {
     });
   })
   const currentUser = user.currentUser.email;
-
   return (
     <div>
       <AppBar className={classes.appBar}>
@@ -97,16 +88,11 @@ const Usuario = () => {
           <Typography variant="h6" className={classes.title}>
             StoreManager
           </Typography>
-          <Button color="inherit" onClick={(e) => logout()}>Cerrar sesión</Button>
+          <Button color="inherit">Cerrar sesión</Button>
         </Toolbar>
       </AppBar>
       {storeExist ? <></> : <AddStoreDialog></AddStoreDialog>}
-      <Menu open={menu} name={name} storeName={storeName} address={storeAddress}></Menu>
-      <div class={clsx(classes.content, {
-          [classes.contentShift]: menu
-        })}>
-          <Inicio nombre={name.split(" ")[0]}></Inicio>
-        </div>
+      <Menu name={name} open={menu} storeName={storeName} address={storeAddress}></Menu>
     </div>
   )
 }
