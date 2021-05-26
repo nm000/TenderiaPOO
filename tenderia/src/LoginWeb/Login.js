@@ -53,8 +53,8 @@ const Login = () => {
             setErrorMSG('Usuario invalido')
         }
 
-        if (validatePassword(user)){
-            if (Usuario.iniciarSesion(user,password)){
+        if (validatePassword(user)) {
+            if (Usuario.iniciarSesion(user, password)) {
                 setSession(true);
                 history.push("/password");
             }
@@ -82,7 +82,7 @@ const Login = () => {
                         <Box style={boxStyles} component={Paper} elevation={10} display="flex" justifyContent="center" alignItems="center">
                             <Box p={4}>
                                 <Box display="flex">
-                                    <h1 style={{ marginLeft: '85px'}}>Iniciar sesión</h1>
+                                    <h1 style={{ marginLeft: '85px' }}>Iniciar sesión</h1>
                                 </Box>
                                 {hasError ?
                                     <Alert variant="filled" severity="error">
