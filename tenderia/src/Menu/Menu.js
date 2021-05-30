@@ -3,7 +3,7 @@ import { Drawer, List, ListItem, ListItemText, Divider, Button, Box } from '@mat
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper } from "@material-ui/core";
 import Inicio from '../Modulos/Inicio';
-import Inventario from '../Modulos/Inventario';
+import Inventario from '../Modulos/Inventario.js';
 
 import { Link, useHistory } from 'react-router-dom';
 const drawerWidth = 300;

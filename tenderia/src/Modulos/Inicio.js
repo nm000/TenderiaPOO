@@ -1,5 +1,6 @@
 import { Paper, Box, Grid, Icon } from "@material-ui/core";
 import React from "react";
+
 class Inicio extends React.Component {
     styles = {
         height: '100%',
