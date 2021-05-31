@@ -1,6 +1,5 @@
 import { Paper, Box, Grid, Icon, IconButton, Button } from "@material-ui/core";
 import React from "react";
-import './Facturacion.css'
 //import Menu from "../Menu/Menu";
 //import { Table, Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter, Form } from 'reactstrap'
 class Facturacion extends React.Component {
@@ -25,8 +24,8 @@ class Facturacion extends React.Component {
                         </Box>
                     </Paper>
                     <Button style={this.styles}>
-                        <p className="container" >Historial de compras</p>
-                        <Icon fontSize="large" style={{ color: 'black', padding: '5px' }}> storage </Icon>
+                        <p>Historial de compras</p>
+                        <Icon fontSize="large" style={{ color: 'white', padding: '5px' }}> storage </Icon>
                     </Button>
                 </Grid>
             </container>

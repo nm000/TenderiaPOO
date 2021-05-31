@@ -77,7 +77,7 @@ const Usuario = () => {
       console.error(error);
     });
   })
-  const currentUser = user.currentUser.email;
+  const currentUser = user.currentUser.uid;
   return (
     <div>
       <AppBar className={classes.appBar}>
@@ -92,7 +92,7 @@ const Usuario = () => {
         </Toolbar>
       </AppBar>
       {storeExist ? <></> : <AddStoreDialog></AddStoreDialog>}
-      <Menu name={name} open={menu} storeName={storeName} address={storeAddress}></Menu>
+      <Menu name={name} open={menu} storeName={storeName} address={storeAddress} uid={currentUser}></Menu>
     </div>
   )
 }
