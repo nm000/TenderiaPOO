@@ -1,9 +1,9 @@
 import { Paper, Box, Grid, Icon, IconButton, Button } from "@material-ui/core";
 import React from "react";
-import './Inventario.css';
+import './Proveedor.css'
 //import Menu from "../Menu/Menu";
 //import { Table, Button, Container, Modal, ModalBody, ModalHeader, FormGroup, ModalFooter, Form } from 'reactstrap'
-class Inventario extends React.Component {
+class Proveedor extends React.Component {
     styles = {
         height: '100%',
         backgroundColor: '#00B086',
@@ -13,6 +13,7 @@ class Inventario extends React.Component {
         margin: '30px',
         justifyContent: 'center',
     }
+
     stylesDelete = {
         height: '100%',
         backgroundColor: '#FF0000',
@@ -22,39 +23,34 @@ class Inventario extends React.Component {
         margin: '30px',
         justifyContent: 'center',
     }
+    
     render() {
         return (
             //<Menu>
-            <container className="body" >
+            <container>
                 <Grid>
-                    <Paper style={{ 'backgroundColor': '#F44336', color: 'white', height: '100px' }}>
+                    <Paper style={{ 'backgroundColor': '#673AB7', height: '100px', color: 'white' }}>
                         <Box style={{ 'height': '100px' }}>
-                            <Icon style={{ 'fontSize': '100px' }}>category</Icon>
+                            <Icon style={{ 'fontSize': '100px' }}>local_shipping</Icon>
                         </Box>
                     </Paper>
                     <Button style={this.styles}>
-                        <p className="container" >Agregar productos</p>
+                        <p className="container" >Agregar proveedor</p>
                         <Icon fontSize="large" style={{ color: 'black', padding: '5px' }}> add </Icon>
                     </Button>
                     <Button style={this.styles}>
-                        <p className="container" >Modificar producto</p>
-                        <Icon style={{ 'fontSize': "30px", color: 'black', padding: '5px' }}> create </Icon>
+                        <p className="container" >Contactar</p>
+                        <Icon fontSize="large" style={{ color: 'black', padding: '10px' }}> devices ; </Icon>
                     </Button>
                     <Button style={this.stylesDelete}>
-                        <p className="container">Eliminar productos</p>
+                        <p className = "container">Eliminar proveedor</p>
                         <Icon fontSize="large" style={{ color: 'black', padding: '5px' }}> clear </Icon>
                     </Button>
                 </Grid>
             </container>
-
             //</Menu>
         );
     }
-
 }
-export default Inventario;
 
-
-/*Línea 42
-<p style={{'fontSize':'large'}}>Inventario</p>
-*/
+export default Proveedor;
