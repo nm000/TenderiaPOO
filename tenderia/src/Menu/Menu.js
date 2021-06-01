@@ -36,9 +36,9 @@ const Menu = (props) => {
             case 0:
                 return <Inicio nombre={props.name}></Inicio>
             case 1:
-                return <Facturacion></Facturacion>
+                return <Facturacion uid={props.uid}></Facturacion>
             case 2:
-                return <Inventario></Inventario>
+                return <Inventario uid={props.uid}></Inventario>
             case 3:
                 return <Proveedores uid={props.uid}></Proveedores>
         }
