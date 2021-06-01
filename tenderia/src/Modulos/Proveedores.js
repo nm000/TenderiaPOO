@@ -23,11 +23,10 @@ class Proveedores extends React.Component {
     styles = {
         height: '100%',
         backgroundColor: '#00B086',
-        textDecoration: 'none',
         color: 'white',
         display: 'list',
         alignItems: 'center',
-        margin: '10px',
+        margin: '30px',
         justifyContent: 'center',
     }
     stylesCall = {
@@ -61,7 +60,7 @@ class Proveedores extends React.Component {
         return <Link href={"tel:+57" + this.state.data[index].cel} target="_blank"><Button style={this.stylesCall}>Llamar<Icon style={{ padding: '10px' }}> phone</Icon></Button></Link>
     }
     delBtn(index) {
-        if (window.confirm('Estás seguro que deseas eliminar el proveedor '+this.state.data[index].name+'?')) {
+        if (window.confirm('¿Estás seguro que deseas eliminar el proveedor '+this.state.data[index].name+'?')) {
             firebase.database().ref().child('local/' + this.props.uid + '/proveedores/'+index).remove();
         }
     }
@@ -76,8 +75,8 @@ render() {
                 </Box>
             </Paper>
             <Button style={this.styles} onClick={() => { this.state.addModal ? this.setState({ addModal: false }) : this.setState({ addModal: true }) }}>
-                Agregar proveedor
-                <Icon fontSize="large"> add </Icon>
+                <p className="container"> Agregar proveedor </p>
+                <Icon fontSize="large" style={{ padding: '5px' }}> add </Icon>
             </Button>
             <table style={{ 'width': '100%', }}>
                 <thead>

@@ -26,7 +26,7 @@ class Facturacion extends React.Component {
                     </Paper>
                     <Button style={this.styles}>
                         <p className="container">Historial de compras</p>
-                        <Icon fontSize="large" style={{ color: 'black', padding: '5px' }}> storage </Icon>
+                        <Icon fontSize="large" style={{ color: 'white', padding: '5px' }}> storage </Icon>
                     </Button>
                 </Grid>
             </container>

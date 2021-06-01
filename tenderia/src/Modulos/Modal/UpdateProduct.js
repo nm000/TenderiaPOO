@@ -8,29 +8,29 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { Autocomplete } from '@material-ui/lab';
 import { Select } from '@material-ui/core';
-import Proveedor from '../../classes/Proovedor.js';
+import Producto from '../../classes/Producto.js';
 import { MenuItem } from "@material-ui/core";
-export default function AddProvider(props) {
+export default function UpdateProduct(props) {
     let tienda = null;
     const [open, setOpen] = React.useState(props.open);
-    const [providerName, setProviderName] = React.useState('');
-    const [cel, setCel] = React.useState('');
-    const [whatsapp, setWhatsapp] = React.useState(false);
-    const addProveedor = () => {
-        if (providerName !== "" && cel !== "") {
-            const p = new Proveedor(providerName, cel, whatsapp);
-            if (p.addProveedor(props.uid)==true) {
+    const [product, setProduct] = React.useState('');
+    const [price, setPrice] = React.useState('');
+    const [units, setUnits] = React.useState('');
+    const addProducto = () => {
+        if (product !== "" && price !== "" && units !== "") {
+            const p = new Producto(product, price, units);
+            if (p.addProducto(props.uid) == true) {
                 handleClose()
             }
         } else {
-            alert("Verifique los datos de su proveedor porfavor.");
+            alert("Verifique los datos de su producto porfavor.");
         }
     };
     React.useEffect(() => {
         setOpen(props.open);
-        setWhatsapp(false)
-        setProviderName('');
-        setCel('');
+        setPrice('')
+        setUnits('');
+        setProduct('');
     }, [props.open]);
     const handleClose = () => {
         setOpen(false);
@@ -38,40 +38,37 @@ export default function AddProvider(props) {
     return (
         <div>
             <Dialog open={open} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Añadir Proveedor</DialogTitle>
+                <DialogTitle id="form-dialog-title">Actualizar Producto</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
                         id="name"
-                        label="Nombre del proveedor"
+                        label="Nombre del producto"
                         variant="outlined"
                         fullWidth
-                        onChange={(e) => setProviderName(e.target.value)}
+                        onChange={(e) => setProduct(e.target.value)}
                     />
                     <TextField
                         margin="dense"
                         id="location"
                         variant="outlined"
-                        label="Celular"
+                        label="Precio"
                         fullWidth
-                        onChange={(e) => setCel(e.target.value)}
+                        onChange={(e) => setPrice(e.target.value)}
                     />
-                    <p style={{fontFamily: 'Inter'}}>Tiene whatsapp?</p>
-                    <Select
-                        id="ciudades"
-                        value={whatsapp}
+                    <TextField
+                        margin="dense"
+                        id=""
                         variant="outlined"
+                        label="Unidades"
                         fullWidth
-                        onChange={(e) => setWhatsapp(e.target.value)}
-                    >
-                        <MenuItem value="true">Sí</MenuItem>
-                        <MenuItem value="false">No</MenuItem>
-                    </Select>
+                        onChange={(e) => setUnits(e.target.value)}
+                    />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={addProveedor} color="primary">
-                        Añadir Proveedor
+                    <Button onClick={addProducto} color="primary">
+                        Añadir Producto
                     </Button>
                     <Button onClick={handleClose}>
                         Cerrar

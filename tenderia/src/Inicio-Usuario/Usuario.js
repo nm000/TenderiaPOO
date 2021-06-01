@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import firebase from '../utils/firebase';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -51,6 +51,15 @@ const Usuario = () => {
   const [storeAddress, setStoreAddress] = useState('');
   const [storeExist, setStore] = useState(true);
   const [menu, setMenu] = useState(true);
+  const logout = () => {
+    if (window.confirm('¿Estás seguro de cerrar tu sesión?')){
+      firebase.auth().signOut().then(() => {
+        history.push("/login");
+      }).catch((error) => {
+        alert("Houston, we have a problem");
+      });
+    }
+  }
   useEffect(() => {
     firebase.database().ref('usuario/' + user.currentUser.uid).get().then(function (snapshot) {
       if (snapshot.exists()) {
@@ -88,7 +97,7 @@ const Usuario = () => {
           <Typography variant="h6" className={classes.title}>
             StoreManager
           </Typography>
-          <Button color="inherit">Cerrar sesión</Button>
+          <Button color="inherit" onClick={(e) => logout()}>Cerrar sesión</Button>
         </Toolbar>
       </AppBar>
       {storeExist ? <></> : <AddStoreDialog></AddStoreDialog>}
