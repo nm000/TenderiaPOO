@@ -9,7 +9,9 @@ import UpdateProduct from '../Modulos/Modal/UpdateProduct';
 class Inventario extends React.Component {
     state = {
         addModal: false,
+        updateModal: false,
         data: [],
+        currentProduct: 'null'
     }
     peticionGet = () => {
         // adaptado de https://github.com/Borja95/crudFirebase/blob/master/src/App.js
@@ -49,20 +51,16 @@ class Inventario extends React.Component {
             firebase.database().ref().child('local/' + this.props.uid + '/productos/' + index).remove();
         }
     }
-
-    uptBtn(index) {
-        if (window.confirm('¿Estás seguro que deseas actualizar la información del producto ' + this.state.data[index].nombre + '?')) {
-            <UpdateProduct open={this.state.addModal}  uid={this.props.uid}> </UpdateProduct>
-            this.setState({ addModal: true })
-        } else {
-            this.setState ({ addModal: false})
-        }
+    updateBtn(i) {
+        this.setState({ currentProduct: i })
+        { this.state.updateModal ? this.setState({ updateModal: false }) : this.setState({ updateModal: true }) }
     }
     render() {
         return (
             //<Menu>
             <>
                 <Grid>
+                    <UpdateProduct open={this.state.updateModal} uid={this.props.uid} i={this.state.currentProduct}></UpdateProduct>
                     <AddProduct open={this.state.addModal} uid={this.props.uid}></AddProduct>
                     <Paper style={{ 'backgroundColor': '#F44336', color: 'white', height: '100px' }}>
                         <Box style={{ 'height': '100px' }}>
@@ -70,8 +68,8 @@ class Inventario extends React.Component {
                         </Box>
                     </Paper>
                     <Button style={this.styles} onClick={() => { this.state.addModal ? this.setState({ addModal: false }) : this.setState({ addModal: true }) }}>
-                        <p className="container">Agregar producto</p>
-                        <Icon fontSize="large" style={{ color: 'white', padding: '5px' }}> add </Icon>
+                        Agregar producto
+                        <Icon fontSize="large" style={{ color: 'white' }}> add </Icon>
                     </Button>
                 </Grid>
                 <table style={{ 'width': '100%', }}>
@@ -92,7 +90,7 @@ class Inventario extends React.Component {
                                     <td style={{ 'border': 'beige 1px solid' }}>{this.state.data[i].precio}</td>
                                     <td style={{ 'border': 'beige 1px solid' }}>{this.state.data[i].unidades}</td>
                                     <td style={{ 'border': 'beige 1px solid' }}>
-                                        <Button style={this.styles} onClick={() => this.uptBtn(i)}>Editar<Icon style={{ padding: '10px' }}>create</Icon></Button>
+                                        <Button style={this.styles} onClick={() => this.updateBtn(i)}>Editar<Icon style={{ padding: '10px' }}>create</Icon></Button>
                                         <Button style={this.stylesDelete} onClick={() => this.delBtn(i)}>Eliminar<Icon style={{ padding: '10px' }}>delete</Icon></Button>
                                     </td>
                                 </tr>

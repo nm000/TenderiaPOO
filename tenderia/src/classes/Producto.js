@@ -3,7 +3,7 @@ class Producto {
     precio = '';
     nombre = "";
     unidades = "";
-    constructor(nombre, precio, unidades){
+    constructor(nombre, precio, unidades) {
         this.precio = precio;
         this.nombre = nombre;
         this.unidades = unidades;
@@ -21,6 +21,19 @@ class Producto {
             });
             ret = true;
         }
+        return ret;
+    }
+    static updateProduct(uid, i, price, name, units) {
+        let ret = false
+        this.precio = price;
+        this.nombre = name;
+        this.unidades = units;
+        console.log(name);
+        firebase.database().ref('local/' + uid + '/productos/' + i).set({
+            precio: this.precio,
+            nombre: this.nombre,
+            unidades: this.unidades
+        }).then(ret = true);
         return ret;
     }
 }

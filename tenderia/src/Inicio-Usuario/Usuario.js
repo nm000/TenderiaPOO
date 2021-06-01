@@ -16,6 +16,7 @@ import { Switch, Route, BrowserRouter as Router, withRouter } from 'react-router
 import Menu from '../Menu/Menu';
 import Inicio from '../Modulos/Inicio';
 import Factura from '../Modulos/Factura';
+import Usuario1 from '../classes/Usuario';
 const drawerWidth = 300;
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,11 +54,7 @@ const Usuario = () => {
   const [menu, setMenu] = useState(true);
   const logout = () => {
     if (window.confirm('¿Estás seguro de cerrar tu sesión?')){
-      firebase.auth().signOut().then(() => {
-        history.push("/login");
-      }).catch((error) => {
-        alert("Houston, we have a problem");
-      });
+      Usuario1.cerrarSesion();
     }
   }
   useEffect(() => {

@@ -75,8 +75,8 @@ render() {
                 </Box>
             </Paper>
             <Button style={this.styles} onClick={() => { this.state.addModal ? this.setState({ addModal: false }) : this.setState({ addModal: true }) }}>
-                <p className="container"> Agregar proveedor </p>
-                <Icon fontSize="large" style={{ padding: '5px' }}> add </Icon>
+                Agregar proveedor
+                <Icon fontSize="large"> add </Icon>
             </Button>
             <table style={{ 'width': '100%', }}>
                 <thead>

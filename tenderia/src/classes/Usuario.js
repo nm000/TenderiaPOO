@@ -41,7 +41,7 @@ class Usuario {
             });
         return ret;
     }
-    cerrarSesion() {
+    static cerrarSesion() {
         firebase.auth().signOut()
         .catch((error) => {
             alert("Houston, we have a problem");
