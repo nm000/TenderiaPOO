@@ -129,7 +129,7 @@ const Login = () => {
                                     m={2}
                                     style={{ width: '100%' }}>
                                     Ingresar
-                </Button>
+                                </Button>
                                 <Grid container>
                                     <Grid item xs={4}>
                                         <br></br>
@@ -149,7 +149,7 @@ const Login = () => {
                                         color="secondary"
                                         style={{ width: '100%' }}>
                                         Regístrate
-                </Button>
+                                    </Button>
                                 </Link>
                             </Box>
                         </Box>

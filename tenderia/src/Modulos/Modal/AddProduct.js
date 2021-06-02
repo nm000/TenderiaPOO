@@ -50,6 +50,7 @@ export default function AddProduct(props) {
                         onChange={(e) => setProduct(e.target.value)}
                     />
                     <TextField
+                        pattern ="[0,9]+"
                         margin="dense"
                         id="location"
                         variant="outlined"
