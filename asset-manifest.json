@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/TenderiaPOO/static/css/main.632d1b91.chunk.css",
+    "main.js": "/TenderiaPOO/static/js/main.d1087286.chunk.js",
+    "main.js.map": "/TenderiaPOO/static/js/main.d1087286.chunk.js.map",
+    "runtime-main.js": "/TenderiaPOO/static/js/runtime-main.eccb9efd.js",
+    "runtime-main.js.map": "/TenderiaPOO/static/js/runtime-main.eccb9efd.js.map",
+    "static/js/2.b3a7e247.chunk.js": "/TenderiaPOO/static/js/2.b3a7e247.chunk.js",
+    "static/js/2.b3a7e247.chunk.js.map": "/TenderiaPOO/static/js/2.b3a7e247.chunk.js.map",
+    "static/js/3.8d2289d2.chunk.js": "/TenderiaPOO/static/js/3.8d2289d2.chunk.js",
+    "static/js/3.8d2289d2.chunk.js.map": "/TenderiaPOO/static/js/3.8d2289d2.chunk.js.map",
+    "index.html": "/TenderiaPOO/index.html",
+    "static/css/main.632d1b91.chunk.css.map": "/TenderiaPOO/static/css/main.632d1b91.chunk.css.map",
+    "static/js/2.b3a7e247.chunk.js.LICENSE.txt": "/TenderiaPOO/static/js/2.b3a7e247.chunk.js.LICENSE.txt",
+    "static/media/bg.f0b14581.jpg": "/TenderiaPOO/static/media/bg.f0b14581.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.eccb9efd.js",
+    "static/js/2.b3a7e247.chunk.js",
+    "static/css/main.632d1b91.chunk.css",
+    "static/js/main.d1087286.chunk.js"
+  ]
+}
